@@ -110,7 +110,10 @@ a:hover {
   }
 }
 
-
+/* ГЛАВНОЕ - убираем flex/grid ограничения если они есть */
+main, section, article, div {
+  max-width: 100% !important;
+}
 
 /* Стили для карточек */
 .card {
