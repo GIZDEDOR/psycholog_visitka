@@ -20,9 +20,6 @@ interface WorkAreaCardProps extends WorkArea {
   index: number;
 }
 
-/* ------------------------------------------------------------------ */
-/* DATA */
-/* ------------------------------------------------------------------ */
 
 const areas: WorkArea[] = [
   {
