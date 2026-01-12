@@ -172,7 +172,7 @@ export default function Hero() {
           lg:right-[5%]
           lg:top-[12%]
           mx-auto
-          max-w-lg
+          max-w-none
           mt-8
           lg:mt-0
         "
