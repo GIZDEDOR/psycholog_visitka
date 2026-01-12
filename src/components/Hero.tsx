@@ -165,7 +165,7 @@ export default function Hero() {
           lg:absolute 
           lg:w-[20%] 
           lg:h-[85vh] 
-          lg:max-w-2xl 
+          lg:max-w-xl 
           rounded-3xl 
           shadow-2xl 
           opacity-0
