@@ -158,12 +158,12 @@ export default function Hero() {
         className="
           relative 
           z-[30] 
-          w-full 
+          w-[90%]
           h-[300px] 
           sm:h-[400px] 
           md:h-[500px] 
           lg:absolute 
-          lg:w-[20%] 
+          lg:w-[35%] 
           lg:h-[85vh] 
           lg:max-w-xl 
           rounded-3xl 
@@ -172,7 +172,7 @@ export default function Hero() {
           lg:right-[5%]
           lg:top-[12%]
           mx-auto
-          max-w-none
+          max-w-md
           mt-8
           lg:mt-0
         "
