@@ -5,9 +5,6 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 229, 229, 229;  /* gray-warm */
-  --background-start-rgb: 27, 59, 44;  /* primary - тёмно-зелёный */
-  --background-end-rgb: 40, 70, 55;    /* чуть светлее тёмно-зелёный */
 }
 
 /* СБРОС ОТСТУПОВ И УБИРАЕМ ОГРАНИЧЕНИЕ ПО ШИРИНЕ */
@@ -23,12 +20,8 @@ html {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    );
+  color: #e5e5e5;
+  background: #23372e;
   font-family: 'Lora', serif;
   line-height: 1.6;
   min-height: 100vh;

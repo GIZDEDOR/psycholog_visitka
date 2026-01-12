@@ -11,7 +11,8 @@ import {
   ArrowRight,
   ExternalLink,
   MessageSquare,
-  BookOpen
+  BookOpen,
+  FileText
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -44,6 +45,18 @@ const contacts = [
     highlight: true
   },
   {
+    id: 4,
+    title: "Instagram",
+    subtitle: "Личный профиль",
+    description:
+      "Психологические заметки, моменты из практики и личные инсайты. Пространство для размышлений о глубинных процессах и осознанности.",
+    value: "@sash_kuznetsova_",
+    href: "https://www.instagram.com/sash_kuznetsova_",
+    qrValue: "https://www.instagram.com/sash_kuznetsova_",
+    icon: Instagram,
+    highlight: false
+  },
+  {
     id: 3,
     title: "Соавторский проект",
     subtitle: "Spiritual Sisters",
@@ -55,18 +68,6 @@ const contacts = [
     icon: Users,
     highlight: false
   },
-  {
-    id: 4,
-    title: "Instagram",
-    subtitle: "Личный профиль",
-    description:
-      "Страница ведётся неактивно, но вы можете подписаться.",
-    value: "@sash_kuznetsova_",
-    href: "https://www.instagram.com/sash_kuznetsova_",
-    qrValue: "https://www.instagram.com/sash_kuznetsova_",
-    icon: Instagram,
-    highlight: false
-  }
 ];
 
 const bookingLink =
@@ -215,7 +216,7 @@ export default function Contacts() {
           ))}
         </div>
 
-        {/* info panel */}
+        {/* info panel - Two columns on large screens */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -223,18 +224,50 @@ export default function Contacts() {
           transition={{ duration: 0.6 }}
           className="mt-24"
         >
-          <div className="max-w-2xl mx-auto bg-primary/20 backdrop-blur p-8 rounded-2xl border border-gray-800/40">
-            <div className="flex gap-4">
-              <BookOpen className="w-6 h-6 text-secondary mt-1" />
-              <div>
-                <h4 className="text-lg text-gray-light font-medium mb-3">
-                  Форматы работы
-                </h4>
-                <ul className="space-y-2 text-sm text-gray-warm">
-                  <li>• Очно в Санкт-Петербурге</li>
-                  <li>• Онлайн (Zoom / Telegram)</li>
-                  <li>• Индивидуальная и групповая терапия</li>
-                </ul>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Форматы работы */}
+            <div className="bg-primary/20 backdrop-blur p-8 rounded-2xl border border-gray-800/40">
+              <div className="flex gap-4">
+                <BookOpen className="w-6 h-6 text-secondary mt-1" />
+                <div>
+                  <h4 className="text-lg text-gray-light font-medium mb-3">
+                    Форматы работы
+                  </h4>
+                  <ul className="space-y-2 text-sm text-gray-warm">
+                    <li>• Очно в Санкт-Петербурге</li>
+                    <li>• Онлайн (Zoom / Telegram)</li>
+                    <li>• Индивидуальная и групповая терапия</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Психоаналитический контракт */}
+            <div className="bg-primary/20 backdrop-blur p-8 rounded-2xl border border-gray-800/40">
+              <div className="flex gap-4">
+                <FileText className="w-6 h-6 text-secondary mt-1" />
+                <div>
+                  <h4 className="text-lg text-gray-light font-medium mb-3">
+                    Психоаналитический контракт
+                  </h4>
+                  <p className="text-sm text-gray-warm mb-4">
+                    Ознакомьтесь с условиями психоаналитической работы, правилами и рамками.
+                  </p>
+                  <a
+                    href="/documents/psychoanalytic-contract.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      inline-flex items-center gap-2 px-4 py-2 rounded-lg
+                      bg-black/40 border border-gray-700/50
+                      hover:border-secondary/60 hover:text-secondary
+                      transition-colors text-sm text-gray-light
+                    "
+                  >
+                    Открыть PDF
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

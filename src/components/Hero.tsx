@@ -3,13 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import Image from 'next/image';
-import { Calendar, ArrowRight, Sparkles, Target, Brain, Heart } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const photoRef = useRef<HTMLDivElement>(null);
-  const frameRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
@@ -25,7 +24,6 @@ export default function Hero() {
 
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Анимации появления
     const tl = gsap.timeline({
       defaults: { 
         ease: 'power3.out',
@@ -33,41 +31,21 @@ export default function Hero() {
       },
     });
 
-    // Анимация фотографии с эффектом
-    if (photoRef.current && frameRef.current) {
-      tl.fromTo(
-        frameRef.current,
-        { 
-          opacity: 0,
-          scale: 0.9,
-          rotation: -5,
-          filter: "blur(10px) brightness(0.8)"
-        },
-        { 
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          filter: "blur(0px) brightness(1)",
-          duration: 1.4
-        }
-      );
-
+    if (photoRef.current) {
       tl.fromTo(
         photoRef.current,
         { 
           opacity: 0,
-          scale: 1.1,
+          scale: 0.95,
         },
         { 
           opacity: 1,
           scale: 1,
           duration: 1.2
-        },
-        "-=1"
+        }
       );
     }
 
-    // Анимация текста
     if (titleRef.current) {
       tl.fromTo(
         titleRef.current,
@@ -100,7 +78,6 @@ export default function Hero() {
       );
     }
 
-    // Анимация параграфов
     const paragraphs = [
       paragraph1Ref.current,
       paragraph2Ref.current,
@@ -124,7 +101,6 @@ export default function Hero() {
       );
     }
 
-    // Анимация кнопки
     if (buttonRef.current) {
       tl.fromTo(
         buttonRef.current,
@@ -151,13 +127,10 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen overflow-hidden"
+      id="hero"
+      className="relative overflow-hidden rounded-3xl mx-4 md:mx-8 lg:mx-16 xl:mx-24 my-4"
       style={{
-        background: `
-          radial-gradient(circle at 20% 30%, rgba(42, 77, 58, 0.4) 0%, transparent 40%),
-          radial-gradient(circle at 80% 70%, rgba(27, 59, 44, 0.3) 0%, transparent 40%),
-          linear-gradient(180deg, #1B3B2C 0%, #223F33 100%)
-        `,
+        background: '#284033',
         backgroundSize: 'cover',
         backgroundPosition: '50% 0%'
       }}
@@ -179,66 +152,33 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-full">
-        <div className="grid min-h-screen grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-16 py-12 lg:py-0">
+      {/* ФОТО */}
+      <div
+        ref={photoRef}
+        className="absolute z-[30] w-[35%] max-w-2xl h-[85vh] rounded-3xl shadow-2xl opacity-0"
+        style={{
+          right: '5%',
+          top: '12%',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10 rounded-3xl"></div>
+        <Image
+          src="/photo.jpg"
+          alt="Кузнецова Александра — юнгианский психоаналитик"
+          fill
+          priority
+          className="object-cover object-[50%_30%] rounded-3xl"
+          sizes="(max-width: 1024px) 100vw, 35vw"
+        />
+      </div>
+
+      {/* ВЕРХНЯЯ ЧАСТЬ */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 lg:pt-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
           
-          {/* Левая колонка - Фотография */}
-          <div className="relative flex items-center justify-center h-[60vh] lg:h-[80vh] max-h-[800px]">
-            {/* Декоративная рамка - внешняя */}
-            <div 
-              ref={frameRef}
-              className="absolute inset-0 rounded-3xl opacity-0"
-              style={{
-                background: 'linear-gradient(135deg, rgba(138, 155, 140, 0.1) 0%, rgba(42, 77, 58, 0.2) 100%)',
-                border: '1px solid rgba(138, 155, 140, 0.1)',
-                boxShadow: `
-                  0 0 0 1px rgba(138, 155, 140, 0.05),
-                  0 0 60px rgba(138, 155, 140, 0.1),
-                  inset 0 0 40px rgba(138, 155, 140, 0.05)
-                `
-              }}
-            >
-              {/* Внутренняя градиентная рамка */}
-              <div className="absolute inset-4 rounded-2xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-tertiary/10"></div>
-                
-                {/* Основное фото */}
-                <div 
-                  ref={photoRef}
-                  className="relative w-full h-full opacity-0"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10"></div>
-                  <Image
-                    src="/photo.jpg"
-                    alt="Кузнецова Александра — юнгианский психоаналитик"
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Акцентные элементы */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 border border-secondary/20 rounded-full"></div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 border border-tertiary/15 rounded-full"></div>
-            
-            {/* Декоративные иконки */}
-            <div className="absolute -top-8 left-8 p-3 bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-800/50">
-              <Brain className="w-6 h-6 text-secondary" />
-            </div>
-            <div className="absolute bottom-12 -right-8 p-3 bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-800/50">
-              <Heart className="w-6 h-6 text-tertiary" />
-            </div>
-          </div>
-
-          {/* Правая колонка - Текст */}
-          <div className="flex flex-col justify-center space-y-8 lg:space-y-10">
-            {/* Заголовок с акцентом */}
-            <div className="space-y-4">
+          <div className="flex flex-col justify-center">
+            <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/10 rounded-full border border-secondary/20 mb-2">
-                <Sparkles className="w-4 h-4 text-secondary" />
                 <span className="text-secondary text-sm font-medium">Психоаналитик</span>
               </div>
               
@@ -273,77 +213,81 @@ export default function Hero() {
                 Юнгианский психоаналитик
               </p>
             </div>
+          </div>
+        </div>
+      </div>
 
-            {/* Содержание */}
-            <div className="space-y-6 max-w-xl">
+      {/* БЕЖЕВАЯ ПОЛОСКА */}
+      <div className="relative z-10 bg-[#b2b4af] mt-16 rounded-b-3xl">
+        <div
+          className="
+            mx-auto
+            max-w-7xl
+            px-4
+            sm:px-6
+            lg:px-8
+            py-8
+            lg:py-12
+          "
+        >
+          {/* Контейнер для текста */}
+          <div className="w-full lg:w-[55%]">
+            <h2
+              className="
+                text-3xl
+                lg:text-4xl
+                font-light
+                text-white
+                mb-8
+              "
+            >
+              О специалисте
+            </h2>
+            
+            <div className="space-y-8">
               <p
                 ref={paragraph1Ref}
                 className="
-                  text-gray-warm
+                  text-gray-800
                   text-lg
                   lg:text-xl
                   leading-relaxed
                   opacity-0
-                  bg-gradient-to-r from-gray-900/30 to-transparent
-                  p-4
-                  rounded-xl
-                  border-l-2
-                  border-secondary/30
+                  mb-6
                 "
               >
-                Веду индивидуальную и групповую психоаналитическую работу со взрослыми
-                людьми, исследуя бессознательные процессы, влияющие на внутренние
-                конфликты, отношения и жизненные сценарии.
+                Веду индивидуальную и групповую психоаналитическую работу со взрослыми людьми, исследуя бессознательные процессы, которые влияют на внутренние конфликты, отношения и жизненные сценарии.
               </p>
 
-              <div
+              <p
                 ref={paragraph2Ref}
                 className="
-                  relative
-                  bg-gradient-to-r from-secondary/5 to-tertiary/5
-                  border border-secondary/20
-                  p-6
-                  rounded-xl
-                  italic
-                  text-gray-warm
+                  text-gray-800
                   text-lg
                   lg:text-xl
                   leading-relaxed
                   opacity-0
-                  backdrop-blur-sm
+                  mb-6
                 "
               >
-                <Target className="absolute -top-3 -left-3 w-6 h-6 text-secondary/50" />
-                <span className="absolute top-2 left-4 text-2xl text-secondary/30">"</span>
-                <span className="absolute bottom-2 right-4 text-2xl text-secondary/30">"</span>
-                <p className="relative z-10">
-                  Отдельное направление моей практики — психоаналитическая работа в
-                  сетевых и организационных структурах: индивидуально и в группах.
-                </p>
-              </div>
+                Отдельное направление моей практики - психоаналитическая работа в сетевых и организационных структурах: индивидуально и в группах.
+              </p>
 
               <p
                 ref={paragraph3Ref}
                 className="
-                  text-gray-warm
+                  text-gray-800
                   text-lg
                   lg:text-xl
                   leading-relaxed
                   opacity-0
-                  bg-gradient-to-r from-gray-900/30 to-transparent
-                  p-4
-                  rounded-xl
-                  border-l-2
-                  border-tertiary/30
                 "
               >
-                В работе использую аналитический и символический подход, включая
-                проективные методики (МАК, Таро) и терапевтические игры.
+                В работе использую аналитический и символический подход, включая проективные методики (МАК, Таро) и терапевтические игры.
               </p>
             </div>
-
-            {/* Улучшенная кнопка */}
-            <div className="pt-6">
+            
+            <div className="pt-8">
               <a
                 ref={buttonRef}
                 href="#contacts"
@@ -356,16 +300,16 @@ export default function Hero() {
                   gap-4
                   px-8
                   py-4
-                  bg-gradient-to-r from-primary/40 to-secondary/30
+                  bg-gradient-to-r from-[#284033] to-secondary
                   backdrop-blur-sm
                   border-2
-                  border-secondary/30
+                  border-[#284033]
                   rounded-xl
                   transition-all
                   duration-300
                   hover:scale-[1.02]
-                  hover:border-secondary/50
-                  hover:shadow-[0_0_40px_rgba(138,155,140,0.3)]
+                  hover:border-secondary
+                  hover:shadow-[0_0_40px_rgba(40,64,51,0.5)]
                   opacity-0
                   overflow-hidden
                 "
@@ -380,20 +324,20 @@ export default function Hero() {
                 }}
               >
                 {/* Эффект свечения при наведении */}
-                <div className="absolute inset-0 bg-gradient-to-r from-secondary/10 to-tertiary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-tertiary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
                 {/* Содержимое кнопки */}
-                <Calendar className="w-6 h-6 text-secondary relative z-10" />
-                <span className="text-xl font-medium text-gray-light group-hover:text-secondary transition-colors duration-300 relative z-10">
+                <Calendar className="w-6 h-6 text-white relative z-10" />
+                <span className="text-xl font-medium text-white relative z-10">
                   Записаться на консультацию
                 </span>
-                <ArrowRight className="w-5 h-5 text-secondary transform group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
+                <ArrowRight className="w-5 h-5 text-white transform group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
                 
                 {/* Анимация фона */}
-                <div className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-tertiary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-secondary/30 to-tertiary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </a>
               
-              <p className="mt-4 text-gray-warm/70 text-sm max-w-md">
+              <p className="mt-4 text-gray-700 text-sm max-w-md">
                 Нажмите, чтобы перейти к контактам и выбрать удобный способ связи
               </p>
             </div>
@@ -401,14 +345,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Индикатор скролла */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-        <div className="relative">
-          <div className="flex h-12 w-8 justify-center rounded-full border border-secondary/30">
-            <div className="mt-2 h-4 w-1 animate-bounce rounded-full bg-secondary/80"></div>
-          </div>
-        </div>
-      </div>
+      
     </section>
   );
 }

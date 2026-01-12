@@ -1,184 +1,169 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-
-const education = [
-  {
-    title: "Институт NLP",
-    subtitle: "Санкт-Петербург",
-    description:
-      "Профессиональная подготовка в области психологии и консультирования.",
-  },
-  {
-    title: "Институт «Новый век»",
-    subtitle: "Аналитическая психология",
-    description:
-      "Обучение юнгианскому подходу и аналитической психотерапии.",
-  },
-  {
-    title: "Юнгианская школа Ольги Гуляевой",
-    subtitle: "Глубинная аналитическая практика",
-    description:
-      "Работа с символами, архетипами и бессознательными процессами.",
-  },
-  {
-    title: "Институт трансориентированной психологии им. Ф. Гудман",
-    subtitle: "Трансгенерационные подходы",
-    description:
-      "Исследование родовых сценариев и коллективной травмы.",
-  },
-  {
-    title: "Санкт-Петербургская Организация Транзактного Анализа",
-    subtitle: "Трансгенерационный анализ",
-    description:
-      "Работа с родовыми сценариями, травмой и идентичностью.",
-  },
-  {
-    title: "Летняя школа МААП",
-    subtitle: "Междисциплинарные конференции",
-    description:
-      "Ежегодное участие в аналитических и профессиональных конференциях.",
-  },
-];
+import { motion } from 'framer-motion';
 
 export default function Education() {
   return (
-    <section id="education" className="relative py-32 scroll-mt-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-16">
-        {/* Заголовок */}
-        <h2 className="font-heading text-4xl lg:text-5xl text-gray-light text-center">
-          Образование и профессиональный путь
-        </h2>
+    <section id="education" className="relative my-4 scroll-mt-24">
+      <div 
+        className="
+          relative
+          overflow-hidden
+          rounded-3xl
+          mx-4
+          md:mx-8
+          lg:mx-16
+          xl:mx-24
+          bg-[#284033]
+        "
+      >
+        <div className="relative z-10 mx-auto max-w-3xl px-6 sm:px-8 lg:px-12 py-16 lg:py-24">
+          {/* Заголовок */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-gray-light mb-6">
+              Образование и профессиональный опыт
+            </h2>
+            
+            <div className="h-px w-24 bg-secondary/50 mx-auto"></div>
+          </motion.div>
 
-        <div className="mx-auto mt-6 h-px w-24 bg-secondary/50" />
+          {/* Вступительный текст */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-16 text-center"
+          >
+            <p className="text-lg md:text-xl text-gray-medium leading-relaxed">
+              Моё профессиональное становление основано на аналитической психологии, 
+              глубинной личной терапии и практической работе.
+            </p>
+          </motion.div>
 
-        {/* Таймлайн */}
-        <div className="relative mt-28">
-          {/* Центральная линия */}
-          <div className="absolute left-1/2 top-0 h-full w-px bg-gray-medium/30 -translate-x-1/2" />
+          {/* Список образования */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-20"
+          >
+            <h3 className="text-xl md:text-2xl font-medium text-gray-light mb-10">
+              Профессиональное образование:
+            </h3>
 
-          <div className="space-y-28">
-            {education.map((item, index) => (
-              <TimelineItem key={index} item={item} index={index} />
-            ))}
-          </div>
+            <ul className="space-y-6">
+              <motion.li 
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5 }}
+                className="flex items-start"
+              >
+                <span className="text-secondary mr-3 mt-1 text-xl">•</span>
+                <span className="text-lg text-gray-light">
+                  <span className="font-medium">Институт НЛП «In NLP» (Санкт-Петербург)</span>
+                  <span className="text-gray-medium ml-2">— НЛП - практик, коуч.</span>
+                </span>
+              </motion.li>
+
+              <motion.li 
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex items-start"
+              >
+                <span className="text-secondary mr-3 mt-1 text-xl">•</span>
+                <span className="text-lg text-gray-light">
+                  <span className="font-medium">Институт «Новый век»</span>
+                  <span className="text-gray-medium ml-2">— аналитическая психология</span>
+                </span>
+              </motion.li>
+
+              <motion.li 
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="flex items-start"
+              >
+                <span className="text-secondary mr-3 mt-1 text-xl">•</span>
+                <span className="text-lg text-gray-light">
+                  <span className="font-medium">Юнгианская школа Ольги Гуляевой</span>
+                  <span className="text-gray-medium ml-2">— юнгианский психоанализ</span>
+                </span>
+              </motion.li>
+
+              <motion.li 
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex items-start"
+              >
+                <span className="text-secondary mr-3 mt-1 text-xl">•</span>
+                <span className="text-lg text-gray-light">
+                  <span className="font-medium">Институт трансориентированной психологии им. Ф. Гудман (ИТОП)</span>
+                  <span className="text-gray-medium ml-2">— психология через трансориентированный подход</span>
+                </span>
+              </motion.li>
+
+              <motion.li 
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.25 }}
+                className="flex items-start"
+              >
+                <span className="text-secondary mr-3 mt-1 text-xl">•</span>
+                <span className="text-lg text-gray-light">
+                  <span className="font-medium">Санкт-Петербургская Организация Транзактного Анализа</span>
+                  <span className="text-gray-medium ml-2">— трансгенерационный аспект, работа с родовыми сценариями и травмой</span>
+                </span>
+              </motion.li>
+
+              <motion.li 
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex items-start"
+              >
+                <span className="text-secondary mr-3 mt-1 text-xl">•</span>
+                <span className="text-lg text-gray-light">
+                  <span className="font-medium">Летняя школа МААП</span>
+                  <span className="text-gray-medium ml-2">— ежегодные междисциплинарные аналитические конференции</span>
+                </span>
+              </motion.li>
+            </ul>
+          </motion.div>
+
+          {/* Заключительный текст */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="space-y-8"
+          >
+            <p className="text-lg md:text-xl text-gray-medium leading-relaxed">
+              Многолетняя личная терапия, регулярная супервизия и участие в интервизионной группе.
+            </p>
+            
+            <p className="text-lg md:text-xl text-gray-medium leading-relaxed">
+              Непрерывная психоаналитическая практика — индивидуальная и групповая.
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
-  );
-}
-
-type TimelineItemProps = {
-  item: {
-    title: string;
-    subtitle: string;
-    description: string;
-  };
-  index: number;
-};
-
-function TimelineItem({ item, index }: TimelineItemProps) {
-  const isLeft = index % 2 === 0;
-
-  return (
-    <div className="relative grid grid-cols-[1fr_auto_1fr] items-start">
-      {/* Левая колонка */}
-      <div className={`pr-12 ${isLeft ? "block" : "hidden lg:block"}`}>
-        {isLeft && (
-          <TimelineCard item={item} direction="left" />
-        )}
-      </div>
-
-      {/* Центр */}
-      <div className="relative flex justify-center">
-        <span
-          className="
-            z-10
-            mt-6
-            h-4
-            w-4
-            rounded-full
-            bg-secondary
-            shadow-[0_0_0_6px_rgba(255,255,255,0.03)]
-          "
-        />
-      </div>
-
-      {/* Правая колонка */}
-      <div className={`pl-12 ${!isLeft ? "block" : "hidden lg:block"}`}>
-        {!isLeft && (
-          <TimelineCard item={item} direction="right" />
-        )}
-      </div>
-    </div>
-  );
-}
-
-function TimelineCard({
-  item,
-  direction,
-}: {
-  item: {
-    title: string;
-    subtitle: string;
-    description: string;
-  };
-  direction: "left" | "right";
-}) {
-  return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        x: direction === "left" ? -120 : 120,
-      }}
-      whileInView={{
-        opacity: 1,
-        x: 0,
-      }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative"
-    >
-      {/* Стрелка */}
-      <span
-        className={`
-          absolute
-          top-6
-          h-0
-          w-0
-          border-y-8
-          border-y-transparent
-          ${
-            direction === "left"
-              ? "right-[-8px] border-l-8 border-l-gray-900/80"
-              : "left-[-8px] border-r-8 border-r-gray-900/80"
-          }
-        `}
-      />
-
-      <div
-        className="
-          bg-gray-900/80
-          backdrop-blur
-          p-8
-          rounded-3xl
-          border
-          border-gray-medium/20
-          shadow-[0_20px_40px_rgba(0,0,0,0.45)]
-        "
-      >
-        <h3 className="text-xl lg:text-2xl font-heading text-gray-light">
-          {item.title}
-        </h3>
-
-        <p className="mt-2 text-secondary font-medium">
-          {item.subtitle}
-        </p>
-
-        <p className="mt-4 text-gray-warm leading-relaxed">
-          {item.description}
-        </p>
-      </div>
-    </motion.div>
   );
 }

@@ -10,6 +10,7 @@ export default function Navigation() {
   const [activeSection, setActiveSection] = useState('');
 
   const navItems = [
+    { name: 'О специалисте', href: '#hero', icon: User },
     { name: 'Образование', href: '#education', icon: GraduationCap },
     { name: 'С чем работаю', href: '#workareas', icon: Brain },
     { name: 'Стоимость', href: '#pricing', icon: Wallet },
