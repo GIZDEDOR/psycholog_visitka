@@ -163,7 +163,7 @@ export default function Hero() {
           sm:h-[400px] 
           md:h-[500px] 
           lg:absolute 
-          lg:w-[30%] 
+          lg:w-[20%] 
           lg:h-[85vh] 
           lg:max-w-2xl 
           rounded-3xl 
