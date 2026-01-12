@@ -152,14 +152,30 @@ export default function Hero() {
         }}
       />
 
-      {/* ФОТО */}
+      {/* ФОТО - АДАПТИВНАЯ ВЕРСИЯ */}
       <div
         ref={photoRef}
-        className="absolute z-[30] w-[35%] max-w-2xl h-[85vh] rounded-3xl shadow-2xl opacity-0"
-        style={{
-          right: '5%',
-          top: '12%',
-        }}
+        className="
+          relative 
+          z-[30] 
+          w-full 
+          h-[300px] 
+          sm:h-[400px] 
+          md:h-[500px] 
+          lg:absolute 
+          lg:w-[35%] 
+          lg:h-[85vh] 
+          lg:max-w-2xl 
+          rounded-3xl 
+          shadow-2xl 
+          opacity-0
+          lg:right-[5%]
+          lg:top-[12%]
+          mx-auto
+          max-w-md
+          mt-8
+          lg:mt-0
+        "
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10 rounded-3xl"></div>
         <Image
@@ -168,7 +184,7 @@ export default function Hero() {
           fill
           priority
           className="object-cover object-[50%_30%] rounded-3xl"
-          sizes="(max-width: 1024px) 100vw, 35vw"
+          sizes="(max-width: 1024px) 90vw, 35vw"
         />
       </div>
 
@@ -214,11 +230,14 @@ export default function Hero() {
               </p>
             </div>
           </div>
+          
+          {/* Пустой блок для десктопной версии (чтобы сетка работала правильно) */}
+          <div className="hidden lg:block"></div>
         </div>
       </div>
 
       {/* БЕЖЕВАЯ ПОЛОСКА */}
-      <div className="relative z-10 bg-[#b2b4af] mt-16 rounded-b-3xl">
+      <div className="relative z-10 bg-[#b2b4af] mt-8 lg:mt-16 rounded-b-3xl">
         <div
           className="
             mx-auto
@@ -298,8 +317,10 @@ export default function Hero() {
                   items-center
                   justify-center
                   gap-4
-                  px-8
-                  py-4
+                  px-6
+                  sm:px-8
+                  py-3
+                  sm:py-4
                   bg-gradient-to-r from-[#284033] to-secondary
                   backdrop-blur-sm
                   border-2
@@ -312,6 +333,8 @@ export default function Hero() {
                   hover:shadow-[0_0_40px_rgba(40,64,51,0.5)]
                   opacity-0
                   overflow-hidden
+                  w-full
+                  sm:w-auto
                 "
                 onClick={(e) => {
                   e.preventDefault();
@@ -327,17 +350,17 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-tertiary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
                 {/* Содержимое кнопки */}
-                <Calendar className="w-6 h-6 text-white relative z-10" />
-                <span className="text-xl font-medium text-white relative z-10">
+                <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-white relative z-10" />
+                <span className="text-base sm:text-xl font-medium text-white relative z-10 text-center sm:text-left">
                   Записаться на консультацию
                 </span>
-                <ArrowRight className="w-5 h-5 text-white transform group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-white transform group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
                 
                 {/* Анимация фона */}
                 <div className="absolute inset-0 bg-gradient-to-r from-secondary/30 to-tertiary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </a>
               
-              <p className="mt-4 text-gray-700 text-sm max-w-md">
+              <p className="mt-4 text-gray-700 text-sm sm:text-base max-w-md">
                 Нажмите, чтобы перейти к контактам и выбрать удобный способ связи
               </p>
             </div>
