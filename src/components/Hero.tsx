@@ -159,9 +159,9 @@ export default function Hero() {
           relative 
           z-[30] 
           w-full 
-          h-[300px] 
-          sm:h-[400px] 
-          md:h-[500px] 
+          h-[200px] 
+          sm:h-[350px] 
+          md:h-[450px] 
           lg:absolute 
           lg:w-[35%] 
           lg:h-[85vh] 
@@ -172,8 +172,9 @@ export default function Hero() {
           lg:right-[5%]
           lg:top-[12%]
           mx-auto
-          max-w-md
-          mt-8
+          max-w-xs
+          md:max-w-md
+          mt-6
           lg:mt-0
         "
       >
