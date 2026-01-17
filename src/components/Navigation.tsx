@@ -5,6 +5,8 @@ import { Menu, X, ChevronRight, User, Brain, Wallet, Phone, GraduationCap } from
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navigation() {
+  const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -20,7 +22,21 @@ export default function Navigation() {
   // Отслеживание скролла для изменения фона навигации
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      
+      // Изменение фона при скролле
+      setIsScrolled(currentScrollY > 20);
+
+      // Логика скрытия/показа при скролле
+      if (currentScrollY < lastScrollY) {
+        // Скроллим вверх - показываем навигацию
+        setIsHidden(false);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Скроллим вниз и проскроллили больше 100px - скрываем навигацию
+        setIsHidden(true);
+      }
+
+      setLastScrollY(currentScrollY);
       
       // Определяем активную секцию при скролле
       const sections = navItems.map(item => item.href.substring(1));
@@ -37,11 +53,11 @@ export default function Navigation() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Инициализация при загрузке
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -65,9 +81,9 @@ export default function Navigation() {
     <>
       {/* Основная навигация */}
       <motion.nav 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        initial={{ y: 0 }}
+        animate={{ y: isHidden ? '-100%' : '0%' }}
+        transition={{ duration: 0.35, ease: 'easeInOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
             ? 'bg-gray-900/90 backdrop-blur-xl shadow-lg shadow-black/10 border-b border-gray-800/30 py-3' 
@@ -127,14 +143,7 @@ export default function Navigation() {
                     <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-secondary' : 'text-gray-medium'}`} />
                     <span className="font-medium">{item.name}</span>
                     
-                    {/* Акцентный индикатор */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeIndicator"
-                        className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-secondary rounded-full"
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      />
-                    )}
+                    
                     
                     {/* Эффект наведения */}
                     {!isActive && (
